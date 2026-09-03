@@ -421,30 +421,31 @@
                 message: document.getElementById('message').value
             };
 
-            // ⚠️ QUAN TRỌNG: DÁN ĐƯỜNG LINK GOOGLE APP SCRIPT CỦA BẠN VÀO BÊN DƯỚI
+            // ⚠️ NHỚ DÁN LẠI ĐƯỜNG LINK API CỦA BẠN VÀO ĐÂY NHÉ
             const scriptURL = 'https://script.google.com/macros/s/AKfycbwsCrnyy3wp8r4IjFMEDps6wbuO0BJIGIAqFeDVqA2TqG7SBN7YkbTwexHvUdv3Sb2L/exec';
 
+            // 1. Thực hiện bắn dữ liệu đi (Trình duyệt sẽ tự xử lý ngầm)
             fetch(scriptURL, {
                 method: 'POST',
                 mode: 'no-cors', 
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(formData)
-            })
-            .then(() => {
-                // Thành công: Bắn pháo hoa và hiện Popup
+            }).catch(error => {
+                console.error('Lỗi mạng ngầm:', error);
+            });
+
+            // 2. KHÔNG CHỜ GOOGLE PHẢN HỒI (Tránh bị lag)
+            // Chủ động hiện hiệu ứng thành công sau 0.8 giây để tạo cảm giác mượt mà
+            setTimeout(() => {
+                // Bắn pháo hoa và hiện Popup
                 confetti({ particleCount: 150, spread: 80, origin: { y: 0.6 } });
                 document.getElementById('thankyou-modal').style.display = 'flex';
                 
-                // Reset form
+                // Reset form về trạng thái ban đầu
                 document.getElementById('rsvpForm').reset();
                 submitBtn.innerText = 'Gửi Phản Hồi';
                 submitBtn.disabled = false;
-            })
-            .catch(error => {
-                alert('Có lỗi xảy ra, vui lòng thử lại sau nhé!');
-                submitBtn.innerText = 'Gửi Phản Hồi';
-                submitBtn.disabled = false;
-            });
+            }, 800); 
         });
 
         function closeModal() {
