@@ -1,335 +1,455 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="vi">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Thiệp Mời Lễ Tốt Nghiệp - Minh Quang</title>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap"
-      rel="stylesheet"
-    />
+    <title>Thiệp Mời Lễ Tốt Nghiệp - Phan Minh Quang</title>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
     <style>
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
-
-      body {
-        font-family: "Plus Jakarta Sans", sans-serif;
-        background: linear-gradient(
-          135deg,
-          #fce4ec 0%,
-          #e8eaf6 50%,
-          #e0f2fe 100%
-        );
-        min-height: 100vh;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding: 20px;
-        color: #334155;
-        overflow-x: hidden;
-        position: relative;
-      }
-
-      /* Container trái tim bay */
-      #hearts-container {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        pointer-events: none;
-        z-index: 1;
-      }
-
-      .heart {
-        position: absolute;
-        color: #ec4899;
-        animation: float 4s infinite linear;
-        opacity: 0.7;
-      }
-
-      @keyframes float {
-        0% {
-          transform: translateY(100vh) rotate(0deg);
-          opacity: 1;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
-        100% {
-          transform: translateY(-10vh) rotate(360deg);
-          opacity: 0;
+
+        body {
+            font-family: "Plus Jakarta Sans", sans-serif;
+            background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            color: #334155;
+            overflow-x: hidden;
+            position: relative;
         }
-      }
 
-      /* Khung Thiệp */
-      .card {
-        background: rgba(255, 255, 255, 0.88);
-        backdrop-filter: blur(16px);
-        -webkit-backdrop-filter: blur(16px);
-        border-radius: 24px;
-        border: 1px solid rgba(255, 255, 255, 0.7);
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
-        max-width: 480px;
-        width: 100%;
-        padding: 36px 28px;
-        text-align: center;
-        position: relative;
-        z-index: 10;
-      }
-
-      .badge {
-        display: inline-block;
-        padding: 6px 18px;
-        background: linear-gradient(135deg, #6366f1, #a855f7);
-        color: white;
-        font-size: 0.8rem;
-        font-weight: 700;
-        border-radius: 50px;
-        text-transform: uppercase;
-        letter-spacing: 1.2px;
-        margin-bottom: 16px;
-      }
-
-      h1 {
-        font-family: "Dancing Script", cursive;
-        font-size: 3rem;
-        color: #4f46e5;
-        margin-bottom: 6px;
-      }
-
-      .subtitle {
-        font-size: 1.1rem;
-        color: #64748b;
-        margin-bottom: 20px;
-      }
-
-      /* Khung Ảnh */
-      .photo-frame {
-        width: 100%;
-        height: 250px;
-        border-radius: 18px;
-        overflow: hidden;
-        margin-bottom: 24px;
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-        position: relative;
-        background: #e2e8f0;
-      }
-
-      .photo-frame img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        transition: transform 0.5s ease;
-      }
-
-      .photo-frame:hover img {
-        transform: scale(1.05);
-      }
-
-      /* Thông tin thời gian & địa điểm */
-      .info-box {
-        background: rgba(248, 250, 252, 0.9);
-        border-radius: 16px;
-        padding: 18px;
-        margin-bottom: 20px;
-        border: 1px solid #e2e8f0;
-        text-align: left;
-      }
-
-      .info-item {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        margin-bottom: 12px;
-        font-size: 0.95rem;
-      }
-
-      .info-item:last-child {
-        margin-bottom: 0;
-      }
-
-      .info-icon {
-        font-size: 1.2rem;
-        width: 36px;
-        height: 36px;
-        background: #e0e7ff;
-        border-radius: 10px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-shrink: 0;
-      }
-
-      .message-box {
-        font-style: italic;
-        color: #475569;
-        line-height: 1.6;
-        margin-bottom: 26px;
-        padding: 0 8px;
-        font-size: 0.98rem;
-      }
-
-      /* Nút Tương Tác */
-      .btn-primary {
-        width: 100%;
-        padding: 16px;
-        border: none;
-        border-radius: 50px;
-        background: linear-gradient(135deg, #ec4899, #8b5cf6);
-        color: white;
-        font-size: 1.05rem;
-        font-weight: 700;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        box-shadow: 0 10px 20px rgba(236, 72, 153, 0.3);
-      }
-
-      .btn-primary:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 14px 28px rgba(236, 72, 153, 0.45);
-      }
-
-      /* Pop-up xác nhận */
-      .modal {
-        display: none;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(15, 23, 42, 0.6);
-        backdrop-filter: blur(4px);
-        z-index: 100;
-        justify-content: center;
-        align-items: center;
-        padding: 20px;
-      }
-
-      .modal-content {
-        background: white;
-        padding: 32px 24px;
-        border-radius: 24px;
-        text-align: center;
-        max-width: 360px;
-        width: 100%;
-        animation: popIn 0.3s ease;
-      }
-
-      @keyframes popIn {
-        from {
-          transform: scale(0.8);
-          opacity: 0;
+        /* Hiệu ứng nền tảng bay */
+        #floating-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
         }
-        to {
-          transform: scale(1);
-          opacity: 1;
+
+        .floating-item {
+            position: absolute;
+            animation: floatUp infinite linear;
+            opacity: 0.6;
         }
-      }
+
+        @keyframes floatUp {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.8; }
+            90% { opacity: 0.8; }
+            100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+        }
+
+        /* Khung Thiệp chính */
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            width: 100%;
+            padding: 40px 30px;
+            text-align: center;
+            position: relative;
+            z-index: 10;
+            animation: slideUpFade 1s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        @keyframes slideUpFade {
+            from { transform: translateY(40px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 6px 20px;
+            background: linear-gradient(135deg, #0f172a, #334155);
+            color: white;
+            font-size: 0.75rem;
+            font-weight: 700;
+            border-radius: 50px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-family: "Dancing Script", cursive;
+            font-size: 3.2rem;
+            color: #1e293b;
+            margin-bottom: 4px;
+            line-height: 1.2;
+        }
+
+        h2 {
+            font-size: 1.1rem;
+            color: #64748b;
+            margin-bottom: 24px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .photo-frame {
+            width: 100%;
+            height: 280px;
+            border-radius: 20px;
+            overflow: hidden;
+            margin-bottom: 24px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            background: #e2e8f0;
+        }
+
+        .photo-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .photo-frame:hover img {
+            transform: scale(1.08);
+        }
+
+        .info-box {
+            background: #f8fafc;
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 24px;
+            border: 1px solid #e2e8f0;
+            text-align: left;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 14px;
+            font-size: 0.95rem;
+            color: #475569;
+        }
+
+        .info-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .info-icon {
+            font-size: 1.2rem;
+            width: 40px;
+            height: 40px;
+            background: white;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .message-box {
+            font-style: italic;
+            color: #475569;
+            line-height: 1.7;
+            margin-bottom: 30px;
+            padding: 0 10px;
+            font-size: 0.95rem;
+        }
+
+        /* Thiết kế Form RSVP */
+        .rsvp-section {
+            border-top: 1px dashed #cbd5e1;
+            padding-top: 24px;
+            text-align: left;
+        }
+
+        .rsvp-title {
+            font-size: 1.2rem;
+            color: #0f172a;
+            margin-bottom: 16px;
+            font-weight: 700;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 14px 16px;
+            border-radius: 12px;
+            border: 1px solid #cbd5e1;
+            background: #f8fafc;
+            font-family: inherit;
+            font-size: 0.95rem;
+            color: #334155;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: #3b82f6;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+
+        .btn-primary {
+            width: 100%;
+            padding: 16px;
+            border: none;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #2563eb, #4f46e5);
+            color: white;
+            font-size: 1.05rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 20px rgba(37, 99, 235, 0.2);
+            font-family: inherit;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 14px 28px rgba(37, 99, 235, 0.3);
+        }
+
+        .btn-primary:disabled {
+            background: #94a3b8;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        /* Nút Phát Nhạc */
+        #music-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            z-index: 100;
+            border: none;
+            transition: all 0.3s ease;
+        }
+        #music-btn:hover {
+            transform: scale(1.1);
+        }
+        .playing { animation: pulse 2s infinite; }
+        
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(79, 70, 229, 0.4); }
+            70% { box-shadow: 0 0 0 15px rgba(79, 70, 229, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(79, 70, 229, 0); }
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(15, 23, 42, 0.7);
+            backdrop-filter: blur(6px);
+            z-index: 999;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 24px;
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+            animation: popIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        @keyframes popIn {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
     </style>
-  </head>
-  <body>
-    <div id="hearts-container"></div>
+</head>
+<body>
+    <!-- Nhạc nền chill chill -->
+    <audio id="bgMusic" loop>
+        <source src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=lofi-study-112191.mp3" type="audio/mpeg">
+    </audio>
+
+    <button id="music-btn" onclick="toggleMusic()" title="Bật/Tắt Nhạc">🎵</button>
+
+    <div id="floating-container"></div>
 
     <div class="card">
-      <span class="badge">Invitation Card</span>
-      <h1>Lễ Tốt Nghiệp</h1>
-      <h2
-        style="
-          font-size: 1.2rem;
-          color: #64748b;
-          margin-bottom: 10px;
-          font-weight: 600;
-        "
-      >
-        Đại học Bách khoa Hà Nội
-      </h2>
-      <p class="subtitle">
-        Thân mời: <strong style="color: #ec4899">Minmin ❤️</strong>
-      </p>
-
-      <div class="photo-frame">
-        <img src="2026-07-04-shot-08.jpg" alt="Ảnh Kỷ Niệm" />
-      </div>
-
-      <div class="info-box">
-        <div class="info-item">
-          <div class="info-icon">📅</div>
-          <div><strong>Thời gian:</strong> Sáng Thứ 7, Ngày 26/09/2026</div>
-        </div>
-        <div class="info-item">
-          <div class="info-icon">📍</div>
-          <div><strong>Địa điểm:</strong> Hội trường C2</div>
-        </div>
-        <div class="info-item">
-          <div class="info-icon">🎓</div>
-          <div><strong>Nhân vật chính:</strong> Phan Minh Quang</div>
-        </div>
-      </div>
-
-      <div class="message-box">
-        "Cảm ơn em đã luôn là điểm tựa dịu dàng, đồng hành cùng anh qua những
-        năm tháng đại học. Sự có mặt của em trong ngày nhận bằng chính là món
-        quà tuyệt vời nhất dành cho anh!"
-      </div>
-
-      <button class="btn-primary" onclick="confirmAttendance()">
-        ✨ Xác Nhận Sẽ Đến Tham Dự ✨
-      </button>
-    </div>
-
-    <div class="modal" id="thankyou-modal">
-      <div class="modal-content">
-        <h2
-          style="
-            font-family: &quot;Dancing Script&quot;, cursive;
-            color: #ec4899;
-            font-size: 2.4rem;
-            margin-bottom: 10px;
-          "
-        >
-          Tuyệt vời quá! 🥰
-        </h2>
-        <p style="color: #475569; margin-bottom: 24px; line-height: 1.5">
-          Hẹn gặp Minmin vào sáng thứ 7 nhé! Quang sẽ đợi em ở Hội trường C2 nha
-          ❤️
+        <span class="badge">Graduation Invitation</span>
+        <h1>Lễ Tốt Nghiệp</h1>
+        <h2>Đại học Bách khoa Hà Nội</h2>
+        
+        <p style="color: #64748b; margin-bottom: 20px; font-size: 1.05rem;">
+            Thân mời: <strong style="color: #0f172a;">Bạn iu</strong>
         </p>
-        <button class="btn-primary" onclick="closeModal()">Đóng Lại</button>
-      </div>
+
+        <div class="photo-frame">
+            <img src="1788418515539.jpg" alt="Phan Minh Quang" />
+        </div>
+
+        <div class="info-box">
+            <div class="info-item">
+                <div class="info-icon">📅</div>
+                <div><strong>Thời gian:</strong> Sáng thứ 7, ngày 26/09/2026</div>
+            </div>
+            <div class="info-item">
+                <div class="info-icon">📍</div>
+                <div><strong>Địa điểm:</strong> Hội trường C2 - Đại học Bách khoa Hà Nội</div>
+            </div>
+            <div class="info-item">
+                <div class="info-icon">🎓</div>
+                <div><strong>Nhân vật chính:</strong> Phan Minh Quang</div>
+            </div>
+        </div>
+
+        <div class="message-box">
+            "Hành trình tại Đại học Bách khoa Hà Nội đã khép lại với biết bao kỷ niệm đẹp. Sự hiện diện của bạn trong ngày nhận bằng sẽ là món quà tuyệt vời nhất để chung vui cùng mình trong cột mốc đáng nhớ này!"
+        </div>
+
+        <!-- Khu vực điền Form RSVP -->
+        <div class="rsvp-section">
+            <h3 class="rsvp-title">Vui lòng phản hồi tham dự 👇</h3>
+            <form id="rsvpForm">
+                <div class="form-group">
+                    <input type="text" id="guestName" class="form-control" placeholder="Tên của bạn là gì?" required />
+                </div>
+                
+                <div class="form-group">
+                    <select id="attendance" class="form-control" required>
+                        <option value="" disabled selected>Bạn có tham dự được không?</option>
+                        <option value="Có">Chắc chắn rồi, mình sẽ đến!</option>
+                        <option value="Không">Tiếc quá, hôm đó mình bận mất rồi 😢</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <textarea id="message" class="form-control" placeholder="Gửi vài lời nhắn nhủ đến Quang nhé (Không bắt buộc)..." rows="3"></textarea>
+                </div>
+                
+                <button type="submit" class="btn-primary" id="submitBtn">
+                    Gửi Phản Hồi
+                </button>
+            </form>
+        </div>
     </div>
 
+    <!-- Popup Cảm ơn -->
+    <div class="modal" id="thankyou-modal">
+        <div class="modal-content">
+            <h2 style="font-family: 'Dancing Script', cursive; color: #4f46e5; font-size: 2.8rem; margin-bottom: 15px;">Cảm ơn bạn! 🎉</h2>
+            <p style="color: #475569; margin-bottom: 25px; line-height: 1.6; font-size: 1.05rem;">
+                Phản hồi của bạn đã được gửi thành công. Mình rất mong chờ được gặp bạn vào sáng thứ 7 nhé!
+            </p>
+            <button class="btn-primary" onclick="closeModal()">Đóng Lại</button>
+        </div>
+    </div>
+
+    <!-- Script tạo Pháo hoa, Icon bay và Xử lý Form -->
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
     <script>
-      // Tạo trái tim bay nhẹ nhàng
-      function createHeart() {
-        const heart = document.createElement("div");
-        heart.classList.add("heart");
-        heart.innerHTML = "❤️";
-        heart.style.left = Math.random() * 100 + "vw";
-        heart.style.animationDuration = Math.random() * 2 + 3 + "s";
-        heart.style.fontSize = Math.random() * 12 + 14 + "px";
-        document.getElementById("hearts-container").appendChild(heart);
+        // Hiệu ứng hạt bay (Nón tốt nghiệp và ngôi sao lấp lánh)
+        function createFloatingItems() {
+            const icons = ['🎓', '✨', '🎉', '🌟'];
+            const item = document.createElement("div");
+            item.classList.add("floating-item");
+            item.innerHTML = icons[Math.floor(Math.random() * icons.length)];
+            item.style.left = Math.random() * 100 + "vw";
+            item.style.animationDuration = Math.random() * 5 + 6 + "s";
+            item.style.fontSize = Math.random() * 10 + 15 + "px";
+            document.getElementById("floating-container").appendChild(item);
 
-        setTimeout(() => {
-          heart.remove();
-        }, 5000);
-      }
-      setInterval(createHeart, 450);
+            setTimeout(() => { item.remove(); }, 10000);
+        }
+        setInterval(createFloatingItems, 600);
 
-      // Hiệu ứng pháo hoa khi bấm nút
-      function confirmAttendance() {
-        confetti({
-          particleCount: 100,
-          spread: 70,
-          origin: { y: 0.6 },
+        // Xử lý bật/tắt nhạc nền
+        const audio = document.getElementById("bgMusic");
+        const musicBtn = document.getElementById("music-btn");
+        let isPlaying = false;
+
+        function toggleMusic() {
+            if (isPlaying) {
+                audio.pause();
+                musicBtn.classList.remove("playing");
+                musicBtn.innerHTML = "🔇";
+            } else {
+                audio.play();
+                musicBtn.classList.add("playing");
+                musicBtn.innerHTML = "🎵";
+            }
+            isPlaying = !isPlaying;
+        }
+
+        // Xử lý Gửi Form lên Google Sheets
+        document.getElementById('rsvpForm').addEventListener('submit', function(e) {
+            e.preventDefault(); 
+            
+            const submitBtn = document.getElementById('submitBtn');
+            submitBtn.innerText = 'Đang gửi...';
+            submitBtn.disabled = true;
+
+            const formData = {
+                name: document.getElementById('guestName').value,
+                attendance: document.getElementById('attendance').value,
+                message: document.getElementById('message').value
+            };
+
+            // ⚠️ QUAN TRỌNG: DÁN ĐƯỜNG LINK GOOGLE APP SCRIPT CỦA BẠN VÀO BÊN DƯỚI
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbwsCrnyy3wp8r4IjFMEDps6wbuO0BJIGIAqFeDVqA2TqG7SBN7YkbTwexHvUdv3Sb2L/exec';
+
+            fetch(scriptURL, {
+                method: 'POST',
+                mode: 'no-cors', 
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(formData)
+            })
+            .then(() => {
+                // Thành công: Bắn pháo hoa và hiện Popup
+                confetti({ particleCount: 150, spread: 80, origin: { y: 0.6 } });
+                document.getElementById('thankyou-modal').style.display = 'flex';
+                
+                // Reset form
+                document.getElementById('rsvpForm').reset();
+                submitBtn.innerText = 'Gửi Phản Hồi';
+                submitBtn.disabled = false;
+            })
+            .catch(error => {
+                alert('Có lỗi xảy ra, vui lòng thử lại sau nhé!');
+                submitBtn.innerText = 'Gửi Phản Hồi';
+                submitBtn.disabled = false;
+            });
         });
-        document.getElementById("thankyou-modal").style.display = "flex";
-      }
 
-      function closeModal() {
-        document.getElementById("thankyou-modal").style.display = "none";
-      }
+        function closeModal() {
+            document.getElementById("thankyou-modal").style.display = "none";
+        }
     </script>
-  </body>
+</body>
 </html>
