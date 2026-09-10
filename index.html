@@ -327,6 +327,11 @@
                 <div class="info-icon">🎓</div>
                 <div><strong>Nhân vật chính:</strong> Phan Minh Quang</div>
             </div>
+            <!-- Bổ sung số điện thoại liên hệ -->
+            <div class="info-item">
+                <div class="info-icon">📞</div>
+                <div><strong>Liên hệ:</strong> <a href="tel:0941644988" style="color: #2563eb; text-decoration: none; font-weight: 600;">0941 644 988</a> (Quang)</div>
+            </div>
         </div>
 
         <div class="message-box">
@@ -421,7 +426,6 @@
                 message: document.getElementById('message').value
             };
 
-            // ⚠️ NHỚ DÁN LẠI ĐƯỜNG LINK API CỦA BẠN VÀO ĐÂY NHÉ
             const scriptURL = 'https://script.google.com/macros/s/AKfycbwsCrnyy3wp8r4IjFMEDps6wbuO0BJIGIAqFeDVqA2TqG7SBN7YkbTwexHvUdv3Sb2L/exec';
 
             // 1. Thực hiện bắn dữ liệu đi (Trình duyệt sẽ tự xử lý ngầm)
@@ -435,7 +439,6 @@
             });
 
             // 2. KHÔNG CHỜ GOOGLE PHẢN HỒI (Tránh bị lag)
-            // Chủ động hiện hiệu ứng thành công sau 0.8 giây để tạo cảm giác mượt mà
             setTimeout(() => {
                 // Bắn pháo hoa và hiện Popup
                 confetti({ particleCount: 150, spread: 80, origin: { y: 0.6 } });
